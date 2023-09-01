@@ -1,9 +1,10 @@
+export const codeSyntax = `
 import { Card, Input, Select, Form, Button, Slider } from 'antd';
 import './App.css';
 import { useEffect, useState } from 'react';
 import { PlayCircleTwoTone } from '@ant-design/icons';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { solarizedDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { codeSyntax } from './code';
 
 function App() {
@@ -75,7 +76,6 @@ function App() {
   }, [speechUtterance]);
 
   return speechUtterance ? (
-    <>
     <div className="App">
         <Card
           title="React Speech Synthesis"
@@ -115,6 +115,9 @@ function App() {
                 <Slider min={0} max={10} value={rate} onChange={setRate} step={0.1} />
             </Form.Item>
         </Card>
+        <SyntaxHighlighter language="javascript" style={docco}>
+          {codeSyntax}
+        </SyntaxHighlighter>
         {
           speaking && !paused && (
             <div class="ocean">
@@ -125,11 +128,8 @@ function App() {
           )
         }
     </div>
-    <SyntaxHighlighter language="javascript" style={solarizedDark}>
-      {codeSyntax}
-    </SyntaxHighlighter>
-    </>
   ) : <span>Loading....</span>;
 }
 
 export default App;
+`
